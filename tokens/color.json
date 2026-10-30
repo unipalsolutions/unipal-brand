@@ -1,0 +1,30 @@
+{
+  "color": {
+    "$type": "color",
+    "navy": {
+      "$description": "UniPal navy. 900 is the core brand color used by every UniPal brand.",
+      "50":  { "$value": "#F5F6FA" },
+      "100": { "$value": "#E6E9F2" },
+      "200": { "$value": "#C9CFE0" },
+      "300": { "$value": "#9AA4C2" },
+      "400": { "$value": "#6B789E" },
+      "500": { "$value": "#475579" },
+      "600": { "$value": "#2E3B5E" },
+      "700": { "$value": "#1E2A4A" },
+      "800": { "$value": "#152042" },
+      "900": { "$value": "#0E1A3A" },
+      "950": { "$value": "#08112A" }
+    },
+    "white": { "$value": "#FFFFFF" },
+    "gold":     { "$value": "#C8A24A", "$description": "UniPal Group accent" },
+    "emerald":  { "$value": "#0E7C66", "$description": "UniPal Advisors accent" },
+    "burgundy": { "$value": "#9B2C3E", "$description": "UniPal Tax accent" },
+    "blue":     { "$value": "#2563EB", "$description": "UniPal Solutions accent" },
+    "status": {
+      "success": { "$value": "#15803D" },
+      "warning": { "$value": "#B45309" },
+      "danger":  { "$value": "#B91C1C" },
+      "info":    { "$value": "#1D4ED8" }
+    }
+  }
+}

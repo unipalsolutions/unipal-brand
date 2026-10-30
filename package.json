@@ -1,0 +1,22 @@
+{
+  "name": "@unipal/brand",
+  "version": "0.1.0",
+  "description": "UniPal Group shared brand identity: design tokens, logos and generated outputs for web (CSS, Tailwind v4, TypeScript) and Flutter (Dart).",
+  "private": true,
+  "type": "module",
+  "license": "UNLICENSED",
+  "repository": "github:unipalsolutions/unipal-brand",
+  "engines": { "node": ">=22" },
+  "exports": {
+    ".": { "types": "./dist/js/index.d.ts", "default": "./dist/js/index.js" },
+    "./css/tokens.css": "./dist/css/tokens.css",
+    "./css/theme.css": "./dist/css/theme.css",
+    "./logos/*": "./logos/*"
+  },
+  "files": ["dist", "logos", "tokens"],
+  "scripts": {
+    "build": "node scripts/build.mjs",
+    "test": "node --test test/*.test.mjs",
+    "check": "npm run build && npm test && git diff --exit-code -- dist logos preview flutter/lib/src"
+  }
+}
