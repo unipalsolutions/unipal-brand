@@ -1,0 +1,38 @@
+{
+  "color": {
+    "$type": "color",
+    "ink": {
+      "$description": "UniPal petrol ink. 900 is the core color of the left half of the mark and of all text.",
+      "50":  { "$value": "#EEF3F6" },
+      "100": { "$value": "#D9E3EA" },
+      "200": { "$value": "#B3C6D3" },
+      "300": { "$value": "#86A2B5" },
+      "400": { "$value": "#5B7D93" },
+      "500": { "$value": "#3D6078" },
+      "600": { "$value": "#2A4A61" },
+      "700": { "$value": "#1D3A50" },
+      "800": { "$value": "#153246" },
+      "900": { "$value": "#0F2A3D" },
+      "950": { "$value": "#091C2A" }
+    },
+    "sand": {
+      "$description": "Warm paper tones for backgrounds and surfaces.",
+      "25":  { "$value": "#FCFAF6" },
+      "50":  { "$value": "#F5EFE6" },
+      "100": { "$value": "#E9DFD0" },
+      "200": { "$value": "#D8C9B3" },
+      "300": { "$value": "#BFAC92" }
+    },
+    "white": { "$value": "#FFFFFF" },
+    "copper": { "$value": "#B8733A", "$description": "UniPal Group accent" },
+    "teal":   { "$value": "#1C8272", "$description": "UniPal Advisors accent" },
+    "plum":   { "$value": "#8A2F5E", "$description": "UniPal Tax accent" },
+    "cobalt": { "$value": "#2F5BEA", "$description": "UniPal Solutions accent" },
+    "status": {
+      "success": { "$value": "#15803D" },
+      "warning": { "$value": "#B45309" },
+      "danger":  { "$value": "#B91C1C" },
+      "info":    { "$value": "#1D4ED8" }
+    }
+  }
+}

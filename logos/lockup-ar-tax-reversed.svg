@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 196 64" width="196" height="64" direction="rtl" role="img" aria-label="UniPal Tax">
+<title>UniPal Tax</title>
+<path d="M149 8V33A15 15 0 0 0 164 48" fill="none" stroke="#F5EFE6" stroke-width="12"/><path d="M164 48A15 15 0 0 0 179 33V8" fill="none" stroke="#B37896" stroke-width="12"/>
+<text x="126" y="34" font-family="'Readex Pro', 'Segoe UI', Tahoma, sans-serif" font-size="28" font-weight="700" text-anchor="start" direction="rtl" fill="#F5EFE6">يونيبال</text>
+<text x="125" y="55" font-family="'Readex Pro', 'Segoe UI', Tahoma, sans-serif" font-size="13" font-weight="500" text-anchor="start" direction="rtl" fill="#B77F9B">للضرائب</text>
+</svg>

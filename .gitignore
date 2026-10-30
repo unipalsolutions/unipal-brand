@@ -1,0 +1,6 @@
+node_modules/
+.DS_Store
+flutter/.dart_tool/
+flutter/build/
+flutter/pubspec.lock
+flutter/.flutter-plugins*
