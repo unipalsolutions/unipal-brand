@@ -8,7 +8,7 @@ void main() {
       final light = UnipalTheme.light(brand);
       final dark = UnipalTheme.dark(brand);
 
-      expect(light.colorScheme.primary, UnipalPalette.navy900);
+      expect(light.colorScheme.primary, UnipalPalette.ink900);
       expect(light.colorScheme.secondary, brand.light.accent);
       expect(dark.colorScheme.secondary, brand.dark.accent);
       expect(dark.brightness, Brightness.dark);

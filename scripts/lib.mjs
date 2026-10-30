@@ -160,19 +160,20 @@ export function deriveBrands(tokens) {
           name: brand.name,
           nameAr: brand.nameAr,
           label: brand.label,
+          labelAr: brand.labelAr,
           domain: brand.domain,
           light: {
             accent,
-            accentForeground: pickForeground(accent, [color.white, color.navy['950']]),
+            accentForeground: pickForeground(accent, [color.white, color.ink['950']]),
             accentSubtle: lightSubtle,
-            accentStrong: mix(accent, color.navy['950'], 0.2),
+            accentStrong: mix(accent, color.ink['950'], 0.2),
             // Darkened until it reads on the subtle tint, which is darker than the page background.
-            accentText: ensureContrast(accent, lightSubtle, color.navy['950']),
+            accentText: ensureContrast(accent, lightSubtle, color.ink['950']),
           },
           dark: {
-            // Lifted until it reads on the dark page; navy-950 text on it then has the same contrast.
+            // Lifted until it reads on the dark page; ink-950 text on it then has the same contrast.
             accent: darkAccent,
-            accentForeground: color.navy['950'],
+            accentForeground: color.ink['950'],
             accentSubtle: darkSubtle,
             accentStrong: mix(darkAccent, color.white, 0.2),
             accentText: ensureContrast(darkAccent, darkSubtle, color.white),

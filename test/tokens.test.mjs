@@ -10,13 +10,13 @@ const color = subtree(tokens, 'color');
 const semantic = subtree(tokens, 'semantic');
 const brands = deriveBrands(tokens);
 
-test('brand colors match the approved proposal', () => {
-  assert.equal(color.navy['900'], '#0E1A3A');
-  assert.equal(color.navy['50'], '#F5F6FA');
-  assert.equal(brands.group.light.accent, '#C8A24A');
-  assert.equal(brands.advisors.light.accent, '#0E7C66');
-  assert.equal(brands.tax.light.accent, '#9B2C3E');
-  assert.equal(brands.solutions.light.accent, '#2563EB');
+test('brand colors match the approved "Partnership" direction', () => {
+  assert.equal(color.ink['900'], '#0F2A3D');
+  assert.equal(color.sand['50'], '#F5EFE6');
+  assert.equal(brands.group.light.accent, '#B8733A');
+  assert.equal(brands.advisors.light.accent, '#1C8272');
+  assert.equal(brands.tax.light.accent, '#8A2F5E');
+  assert.equal(brands.solutions.light.accent, '#2F5BEA');
 });
 
 test('every color token is a #RRGGBB hex value', () => {
@@ -39,8 +39,7 @@ for (const mode of ['light', 'dark']) {
     test(`${mode}: ${id} accent roles meet contrast targets`, () => {
       const b = brands[id][mode];
       const bg = semantic[mode].background;
-      // Accent fills are not required to reach 3:1 against the page: group gold on white is 2.4:1,
-      // so buttons rely on their label contrast, which is checked here.
+      // Buttons rely on their label contrast, checked here; text in the accent uses accentText.
       assert.ok(contrast(b.accent, b.accentForeground) >= 4.5, `text on accent button (${contrast(b.accent, b.accentForeground).toFixed(2)})`);
       assert.ok(contrast(b.accentText, bg) >= 4.5, `accent text on background (${contrast(b.accentText, bg).toFixed(2)})`);
       assert.ok(contrast(b.accentText, b.accentSubtle) >= 4.5, `accent text on subtle badge (${contrast(b.accentText, b.accentSubtle).toFixed(2)})`);

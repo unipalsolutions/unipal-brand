@@ -1,6 +1,6 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 184 64" width="184" height="64" direction="ltr" role="img" aria-label="UniPal Advisors">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 196 64" width="196" height="64" direction="ltr" role="img" aria-label="UniPal Advisors">
 <title>UniPal Advisors</title>
-<path d="M14 10V32a18 18 0 0 0 36 0V10" fill="none" stroke="#0E1A3A" stroke-width="9" stroke-linecap="round"/><circle cx="32" cy="30" r="6.5" fill="#0E7C66"/>
-<text x="72" y="35" font-family="Inter, 'Helvetica Neue', Arial, sans-serif" font-size="30" font-weight="800" letter-spacing="-0.5" fill="#0E1A3A">UniPal</text>
-<text x="73" y="54" font-family="Inter, 'Helvetica Neue', Arial, sans-serif" font-size="11.5" font-weight="600" letter-spacing="3.5" fill="#0E1A3A">ADVISORS</text>
+<path d="M17 8V33A15 15 0 0 0 32 48" fill="none" stroke="#0F2A3D" stroke-width="12"/><path d="M32 48A15 15 0 0 0 47 33V8" fill="none" stroke="#1C8272" stroke-width="12"/>
+<text x="70" y="36" font-family="'Readex Pro', 'Segoe UI', Tahoma, sans-serif" font-size="29" font-weight="700" letter-spacing="-0.4" fill="#0F2A3D">UniPal</text>
+<text x="71" y="54" font-family="'Readex Pro', 'Segoe UI', Tahoma, sans-serif" font-size="10.5" font-weight="500" letter-spacing="3.6" fill="#0F2A3D">ADVISORS</text>
 </svg>

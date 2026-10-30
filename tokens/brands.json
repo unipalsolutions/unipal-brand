@@ -1,33 +1,37 @@
 {
   "brand": {
-    "$description": "Every UniPal brand shares the navy letter mark. Only the dot (accent) color changes. Add a new brand here and rebuild.",
+    "$description": "The UniPal mark is a U made of two halves: the left half (UniPal) is always ink, the right half (the partner) takes the brand accent. Add a new brand here and rebuild.",
     "group": {
       "name":    { "$type": "string", "$value": "UniPal Group" },
       "label":   { "$type": "string", "$value": "GROUP" },
+      "labelAr": { "$type": "string", "$value": "المجموعة" },
       "nameAr":  { "$type": "string", "$value": "مجموعة يونيبال" },
       "domain":  { "$type": "string", "$value": "unipal.group" },
-      "accent":  { "$type": "color",  "$value": "{color.gold}" }
+      "accent":  { "$type": "color",  "$value": "{color.copper}" }
     },
     "advisors": {
       "name":    { "$type": "string", "$value": "UniPal Advisors" },
       "label":   { "$type": "string", "$value": "ADVISORS" },
+      "labelAr": { "$type": "string", "$value": "للاستشارات" },
       "nameAr":  { "$type": "string", "$value": "يونيبال للاستشارات" },
       "domain":  { "$type": "string", "$value": "advisors.unipal.group" },
-      "accent":  { "$type": "color",  "$value": "{color.emerald}" }
+      "accent":  { "$type": "color",  "$value": "{color.teal}" }
     },
     "tax": {
       "name":    { "$type": "string", "$value": "UniPal Tax" },
       "label":   { "$type": "string", "$value": "TAX" },
+      "labelAr": { "$type": "string", "$value": "للضرائب" },
       "nameAr":  { "$type": "string", "$value": "يونيبال للضرائب" },
       "domain":  { "$type": "string", "$value": "tax.unipal.group" },
-      "accent":  { "$type": "color",  "$value": "{color.burgundy}" }
+      "accent":  { "$type": "color",  "$value": "{color.plum}" }
     },
     "solutions": {
       "name":    { "$type": "string", "$value": "UniPal Solutions" },
       "label":   { "$type": "string", "$value": "SOLUTIONS" },
+      "labelAr": { "$type": "string", "$value": "للحلول" },
       "nameAr":  { "$type": "string", "$value": "يونيبال للحلول" },
       "domain":  { "$type": "string", "$value": "solutions.unipal.group" },
-      "accent":  { "$type": "color",  "$value": "{color.blue}" }
+      "accent":  { "$type": "color",  "$value": "{color.cobalt}" }
     }
   }
 }

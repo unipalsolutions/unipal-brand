@@ -4,21 +4,26 @@ import 'package:flutter/widgets.dart';
 
 /// Raw palette. Prefer [UnipalSemanticColors] and [UnipalBrandColors] in app code.
 abstract final class UnipalPalette {
-  static const gold = Color(0xFFC8A24A);
-  static const emerald = Color(0xFF0E7C66);
-  static const burgundy = Color(0xFF9B2C3E);
-  static const blue = Color(0xFF2563EB);
-  static const navy50 = Color(0xFFF5F6FA);
-  static const navy100 = Color(0xFFE6E9F2);
-  static const navy200 = Color(0xFFC9CFE0);
-  static const navy300 = Color(0xFF9AA4C2);
-  static const navy400 = Color(0xFF6B789E);
-  static const navy500 = Color(0xFF475579);
-  static const navy600 = Color(0xFF2E3B5E);
-  static const navy700 = Color(0xFF1E2A4A);
-  static const navy800 = Color(0xFF152042);
-  static const navy900 = Color(0xFF0E1A3A);
-  static const navy950 = Color(0xFF08112A);
+  static const copper = Color(0xFFB8733A);
+  static const teal = Color(0xFF1C8272);
+  static const plum = Color(0xFF8A2F5E);
+  static const cobalt = Color(0xFF2F5BEA);
+  static const ink50 = Color(0xFFEEF3F6);
+  static const ink100 = Color(0xFFD9E3EA);
+  static const ink200 = Color(0xFFB3C6D3);
+  static const ink300 = Color(0xFF86A2B5);
+  static const ink400 = Color(0xFF5B7D93);
+  static const ink500 = Color(0xFF3D6078);
+  static const ink600 = Color(0xFF2A4A61);
+  static const ink700 = Color(0xFF1D3A50);
+  static const ink800 = Color(0xFF153246);
+  static const ink900 = Color(0xFF0F2A3D);
+  static const ink950 = Color(0xFF091C2A);
+  static const sand25 = Color(0xFFFCFAF6);
+  static const sand50 = Color(0xFFF5EFE6);
+  static const sand100 = Color(0xFFE9DFD0);
+  static const sand200 = Color(0xFFD8C9B3);
+  static const sand300 = Color(0xFFBFAC92);
   static const white = Color(0xFFFFFFFF);
   static const statusSuccess = Color(0xFF15803D);
   static const statusWarning = Color(0xFFB45309);
@@ -61,16 +66,16 @@ final class UnipalSemanticColors {
   final Color info;
 
   static const light = UnipalSemanticColors(
-    background: Color(0xFFFFFFFF),
-    surface: Color(0xFFF5F6FA),
+    background: Color(0xFFFCFAF6),
+    surface: Color(0xFFF5EFE6),
     surfaceRaised: Color(0xFFFFFFFF),
-    foreground: Color(0xFF0E1A3A),
-    foregroundMuted: Color(0xFF475579),
-    border: Color(0xFFE6E9F2),
-    borderStrong: Color(0xFFC9CFE0),
-    primary: Color(0xFF0E1A3A),
+    foreground: Color(0xFF0F2A3D),
+    foregroundMuted: Color(0xFF3D6078),
+    border: Color(0xFFE9DFD0),
+    borderStrong: Color(0xFFD8C9B3),
+    primary: Color(0xFF0F2A3D),
     primaryForeground: Color(0xFFFFFFFF),
-    focusRing: Color(0xFF2563EB),
+    focusRing: Color(0xFF2F5BEA),
     success: Color(0xFF15803D),
     warning: Color(0xFFB45309),
     danger: Color(0xFFB91C1C),
@@ -78,16 +83,16 @@ final class UnipalSemanticColors {
   );
 
   static const dark = UnipalSemanticColors(
-    background: Color(0xFF08112A),
-    surface: Color(0xFF0E1A3A),
-    surfaceRaised: Color(0xFF152042),
-    foreground: Color(0xFFF5F6FA),
-    foregroundMuted: Color(0xFF9AA4C2),
-    border: Color(0xFF1E2A4A),
-    borderStrong: Color(0xFF2E3B5E),
-    primary: Color(0xFFF5F6FA),
-    primaryForeground: Color(0xFF0E1A3A),
-    focusRing: Color(0xFF9AA4C2),
+    background: Color(0xFF091C2A),
+    surface: Color(0xFF0F2A3D),
+    surfaceRaised: Color(0xFF153246),
+    foreground: Color(0xFFF5EFE6),
+    foregroundMuted: Color(0xFFB3C6D3),
+    border: Color(0xFF1D3A50),
+    borderStrong: Color(0xFF2A4A61),
+    primary: Color(0xFFF5EFE6),
+    primaryForeground: Color(0xFF0F2A3D),
+    focusRing: Color(0xFF86A2B5),
     success: Color(0xFF4ADE80),
     warning: Color(0xFFFBBF24),
     danger: Color(0xFFF87171),
@@ -118,80 +123,84 @@ enum UnipalBrand {
     displayName: 'UniPal Group',
     nameAr: 'مجموعة يونيبال',
     label: 'GROUP',
+    labelAr: 'المجموعة',
     domain: 'unipal.group',
     light: UnipalBrandColors(
-      accent: Color(0xFFC8A24A),
-      accentForeground: Color(0xFF08112A),
-      accentSubtle: Color(0xFFF8F4E9),
-      accentStrong: Color(0xFFA28544),
-      accentText: Color(0xFF7B683D),
+      accent: Color(0xFFB8733A),
+      accentForeground: Color(0xFF091C2A),
+      accentSubtle: Color(0xFFF6EEE7),
+      accentStrong: Color(0xFF956237),
+      accentText: Color(0xFF8C5D36),
     ),
     dark: UnipalBrandColors(
-      accent: Color(0xFFC8A24A),
-      accentForeground: Color(0xFF08112A),
-      accentSubtle: Color(0xFF383532),
-      accentStrong: Color(0xFFD3B56E),
-      accentText: Color(0xFFC8A24A),
+      accent: Color(0xFFB8733A),
+      accentForeground: Color(0xFF091C2A),
+      accentSubtle: Color(0xFF35322E),
+      accentStrong: Color(0xFFC68F61),
+      accentText: Color(0xFFC68F61),
     ),
   ),
   advisors(
     displayName: 'UniPal Advisors',
     nameAr: 'يونيبال للاستشارات',
     label: 'ADVISORS',
+    labelAr: 'للاستشارات',
     domain: 'advisors.unipal.group',
     light: UnipalBrandColors(
-      accent: Color(0xFF0E7C66),
+      accent: Color(0xFF1C8272),
       accentForeground: Color(0xFFFFFFFF),
-      accentSubtle: Color(0xFFE2EFED),
-      accentStrong: Color(0xFF0D675A),
-      accentText: Color(0xFF0E7763),
+      accentSubtle: Color(0xFFE4F0EE),
+      accentStrong: Color(0xFF186E64),
+      accentText: Color(0xFF1A786B),
     ),
     dark: UnipalBrandColors(
-      accent: Color(0xFF32907D),
-      accentForeground: Color(0xFF08112A),
-      accentSubtle: Color(0xFF0A2C39),
-      accentStrong: Color(0xFF5BA697),
-      accentText: Color(0xFF51A191),
+      accent: Color(0xFF3E9587),
+      accentForeground: Color(0xFF091C2A),
+      accentSubtle: Color(0xFF0E363C),
+      accentStrong: Color(0xFF65AA9F),
+      accentText: Color(0xFF5BA599),
     ),
   ),
   tax(
     displayName: 'UniPal Tax',
     nameAr: 'يونيبال للضرائب',
     label: 'TAX',
+    labelAr: 'للضرائب',
     domain: 'tax.unipal.group',
     light: UnipalBrandColors(
-      accent: Color(0xFF9B2C3E),
+      accent: Color(0xFF8A2F5E),
       accentForeground: Color(0xFFFFFFFF),
-      accentSubtle: Color(0xFFF3E6E8),
-      accentStrong: Color(0xFF7E273A),
-      accentText: Color(0xFF9B2C3E),
+      accentSubtle: Color(0xFFF1E6EC),
+      accentStrong: Color(0xFF702B54),
+      accentText: Color(0xFF8A2F5E),
     ),
     dark: UnipalBrandColors(
-      accent: Color(0xFFB96B78),
-      accentForeground: Color(0xFF08112A),
-      accentSubtle: Color(0xFF2D182F),
-      accentStrong: Color(0xFFC78993),
-      accentText: Color(0xFFBD727F),
+      accent: Color(0xFFB37896),
+      accentForeground: Color(0xFF091C2A),
+      accentSubtle: Color(0xFF292137),
+      accentStrong: Color(0xFFC293AB),
+      accentText: Color(0xFFB77F9B),
     ),
   ),
   solutions(
     displayName: 'UniPal Solutions',
     nameAr: 'يونيبال للحلول',
     label: 'SOLUTIONS',
+    labelAr: 'للحلول',
     domain: 'solutions.unipal.group',
     light: UnipalBrandColors(
-      accent: Color(0xFF2563EB),
+      accent: Color(0xFF2F5BEA),
       accentForeground: Color(0xFFFFFFFF),
-      accentSubtle: Color(0xFFE5ECFD),
-      accentStrong: Color(0xFF1F53C4),
-      accentText: Color(0xFF245FE1),
+      accentSubtle: Color(0xFFE6EBFC),
+      accentStrong: Color(0xFF274EC4),
+      accentText: Color(0xFF2F5BEA),
     ),
     dark: UnipalBrandColors(
-      accent: Color(0xFF467AEE),
-      accentForeground: Color(0xFF08112A),
-      accentSubtle: Color(0xFF0F265A),
-      accentStrong: Color(0xFF6B95F1),
-      accentText: Color(0xFF628EF1),
+      accent: Color(0xFF597CEE),
+      accentForeground: Color(0xFF091C2A),
+      accentSubtle: Color(0xFF132C5A),
+      accentStrong: Color(0xFF7A96F1),
+      accentText: Color(0xFF7290F1),
     ),
   ),
   ;
@@ -200,6 +209,7 @@ enum UnipalBrand {
     required this.displayName,
     required this.nameAr,
     required this.label,
+    required this.labelAr,
     required this.domain,
     required this.light,
     required this.dark,
@@ -208,16 +218,17 @@ enum UnipalBrand {
   final String displayName;
   final String nameAr;
   final String label;
+  final String labelAr;
   final String domain;
   final UnipalBrandColors light;
   final UnipalBrandColors dark;
 }
 
 abstract final class UnipalFonts {
-  static const latin = 'Inter';
-  static const arabic = 'IBM Plex Sans Arabic';
-  /// Inter first so Latin text and digits use it; Arabic glyphs fall back to IBM Plex Sans Arabic.
-  static const fallback = ['IBM Plex Sans Arabic', 'system-ui', '-apple-system', 'Segoe UI', 'Tahoma', 'sans-serif'];
+  static const latin = 'Readex Pro';
+  static const arabic = 'Readex Pro';
+  /// Readex Pro covers both Arabic and Latin; these are system fallbacks.
+  static const fallback = ['system-ui', '-apple-system', 'Segoe UI', 'Tahoma', 'sans-serif'];
 }
 
 abstract final class UnipalFontSize {

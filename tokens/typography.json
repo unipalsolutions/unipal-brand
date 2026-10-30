@@ -2,47 +2,150 @@
   "font": {
     "family": {
       "$type": "fontFamily",
-      "$description": "Inter first: it has no Arabic glyphs, so Arabic text falls through to IBM Plex Sans Arabic while Latin text and digits stay in Inter.",
-      "sans": { "$value": ["Inter", "IBM Plex Sans Arabic", "system-ui", "-apple-system", "Segoe UI", "Tahoma", "sans-serif"] },
-      "arabic": { "$value": ["IBM Plex Sans Arabic", "Tahoma", "sans-serif"] },
-      "latin": { "$value": ["Inter", "system-ui", "sans-serif"] },
-      "mono": { "$value": ["JetBrains Mono", "ui-monospace", "SFMono-Regular", "Menlo", "monospace"] }
+      "$description": "Readex Pro covers Arabic and Latin with one design, so mixed text stays consistent.",
+      "sans": {
+        "$value": [
+          "Readex Pro",
+          "system-ui",
+          "-apple-system",
+          "Segoe UI",
+          "Tahoma",
+          "sans-serif"
+        ]
+      },
+      "arabic": {
+        "$value": [
+          "Readex Pro",
+          "Tahoma",
+          "sans-serif"
+        ]
+      },
+      "latin": {
+        "$value": [
+          "Readex Pro",
+          "system-ui",
+          "sans-serif"
+        ]
+      },
+      "mono": {
+        "$value": [
+          "JetBrains Mono",
+          "ui-monospace",
+          "SFMono-Regular",
+          "Menlo",
+          "monospace"
+        ]
+      }
     },
     "weight": {
       "$type": "fontWeight",
-      "regular": { "$value": 400 },
-      "medium": { "$value": 500 },
-      "semibold": { "$value": 600 },
-      "bold": { "$value": 700 },
-      "extrabold": { "$value": 800 }
+      "regular": {
+        "$value": 400
+      },
+      "medium": {
+        "$value": 500
+      },
+      "semibold": {
+        "$value": 600
+      },
+      "bold": {
+        "$value": 700
+      },
+      "extrabold": {
+        "$value": 800
+      }
     },
     "size": {
       "$type": "dimension",
-      "xs": { "$value": "12px" },
-      "sm": { "$value": "14px" },
-      "base": { "$value": "16px" },
-      "lg": { "$value": "18px" },
-      "xl": { "$value": "20px" },
-      "2xl": { "$value": "24px" },
-      "3xl": { "$value": "32px" },
-      "4xl": { "$value": "40px" }
+      "xs": {
+        "$value": "12px"
+      },
+      "sm": {
+        "$value": "14px"
+      },
+      "base": {
+        "$value": "16px"
+      },
+      "lg": {
+        "$value": "18px"
+      },
+      "xl": {
+        "$value": "20px"
+      },
+      "2xl": {
+        "$value": "24px"
+      },
+      "3xl": {
+        "$value": "32px"
+      },
+      "4xl": {
+        "$value": "40px"
+      }
     },
     "lineHeight": {
       "$type": "number",
-      "tight": { "$value": 1.25 },
-      "snug": { "$value": 1.4 },
-      "normal": { "$value": 1.6 }
+      "tight": {
+        "$value": 1.25
+      },
+      "snug": {
+        "$value": 1.4
+      },
+      "normal": {
+        "$value": 1.6
+      }
     }
   },
   "text": {
-    "$description": "Type scale from the brand proposal: headline 32-40 bold, subhead 20-24 bold, body 16 regular.",
+    "$description": "Type scale: headline 32-40 bold, subhead 20-24, body 16 regular.",
     "$type": "typography",
-    "display": { "$value": { "fontSize": "{font.size.4xl}", "fontWeight": "{font.weight.bold}", "lineHeight": "{font.lineHeight.tight}" } },
-    "h1":      { "$value": { "fontSize": "{font.size.3xl}", "fontWeight": "{font.weight.bold}", "lineHeight": "{font.lineHeight.tight}" } },
-    "h2":      { "$value": { "fontSize": "{font.size.2xl}", "fontWeight": "{font.weight.bold}", "lineHeight": "{font.lineHeight.snug}" } },
-    "h3":      { "$value": { "fontSize": "{font.size.xl}", "fontWeight": "{font.weight.semibold}", "lineHeight": "{font.lineHeight.snug}" } },
-    "body":    { "$value": { "fontSize": "{font.size.base}", "fontWeight": "{font.weight.regular}", "lineHeight": "{font.lineHeight.normal}" } },
-    "small":   { "$value": { "fontSize": "{font.size.sm}", "fontWeight": "{font.weight.regular}", "lineHeight": "{font.lineHeight.normal}" } },
-    "caption": { "$value": { "fontSize": "{font.size.xs}", "fontWeight": "{font.weight.medium}", "lineHeight": "{font.lineHeight.snug}" } }
+    "display": {
+      "$value": {
+        "fontSize": "{font.size.4xl}",
+        "fontWeight": "{font.weight.bold}",
+        "lineHeight": "{font.lineHeight.tight}"
+      }
+    },
+    "h1": {
+      "$value": {
+        "fontSize": "{font.size.3xl}",
+        "fontWeight": "{font.weight.bold}",
+        "lineHeight": "{font.lineHeight.tight}"
+      }
+    },
+    "h2": {
+      "$value": {
+        "fontSize": "{font.size.2xl}",
+        "fontWeight": "{font.weight.bold}",
+        "lineHeight": "{font.lineHeight.snug}"
+      }
+    },
+    "h3": {
+      "$value": {
+        "fontSize": "{font.size.xl}",
+        "fontWeight": "{font.weight.semibold}",
+        "lineHeight": "{font.lineHeight.snug}"
+      }
+    },
+    "body": {
+      "$value": {
+        "fontSize": "{font.size.base}",
+        "fontWeight": "{font.weight.regular}",
+        "lineHeight": "{font.lineHeight.normal}"
+      }
+    },
+    "small": {
+      "$value": {
+        "fontSize": "{font.size.sm}",
+        "fontWeight": "{font.weight.regular}",
+        "lineHeight": "{font.lineHeight.normal}"
+      }
+    },
+    "caption": {
+      "$value": {
+        "fontSize": "{font.size.xs}",
+        "fontWeight": "{font.weight.medium}",
+        "lineHeight": "{font.lineHeight.snug}"
+      }
+    }
   }
 }

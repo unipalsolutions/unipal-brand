@@ -39,14 +39,25 @@ test('brandForHost maps production, staging and unknown hosts', () => {
   assert.equal(brandForHost(undefined).id, 'group');
 });
 
-test('JS tokens expose the font stack with Inter before Arabic', () => {
-  assert.deepEqual(tokens.font.family.sans.slice(0, 2), ['Inter', 'IBM Plex Sans Arabic']);
+test('JS tokens expose Readex Pro as the primary family', () => {
+  assert.equal(tokens.font.family.sans[0], 'Readex Pro');
+  assert.equal(tokens.font.family.arabic[0], 'Readex Pro');
 });
 
-test('logos keep the letter navy and only change the dot', () => {
+test('logos keep the left half ink and give the right half the brand accent', () => {
   for (const id of Object.keys(brands)) {
-    const svg = files[`logos/symbol-${id}.svg`];
-    assert.ok(svg.includes('stroke="#0E1A3A"'), `${id} letter`);
-    assert.ok(svg.includes(`fill="${brands[id].light.accent}"`), `${id} dot`);
+    const [left, right] = files[`logos/symbol-${id}.svg`].match(/<path [^>]+>/g);
+    assert.ok(left.includes('stroke="#0F2A3D"'), `${id} left half`);
+    assert.ok(right.includes(`stroke="${brands[id].light.accent}"`), `${id} right half`);
+    for (const variant of ['lockup', 'lockup-ar']) {
+      assert.ok(files[`logos/${variant}-${id}.svg`], `${variant} ${id}`);
+      assert.ok(files[`logos/${variant}-${id}-reversed.svg`], `${variant} ${id} reversed`);
+    }
+  }
+});
+
+test('Arabic lockups carry the Arabic company name', () => {
+  for (const b of Object.values(brands)) {
+    assert.ok(files[`logos/lockup-ar-${b.id}.svg`].includes(`>${b.labelAr}</text>`), b.id);
   }
 });

@@ -3,37 +3,93 @@
     "$description": "Role-based colors. Apps use these, never raw palette values. accent* roles are filled per brand at build time.",
     "light": {
       "$type": "color",
-      "background":     { "$value": "{color.white}" },
-      "surface":        { "$value": "{color.navy.50}" },
-      "surfaceRaised":  { "$value": "{color.white}" },
-      "foreground":     { "$value": "{color.navy.900}" },
-      "foregroundMuted":{ "$value": "{color.navy.500}" },
-      "border":         { "$value": "{color.navy.100}" },
-      "borderStrong":   { "$value": "{color.navy.200}" },
-      "primary":        { "$value": "{color.navy.900}" },
-      "primaryForeground": { "$value": "{color.white}" },
-      "focusRing":      { "$value": "{color.blue}" },
-      "success":        { "$value": "{color.status.success}" },
-      "warning":        { "$value": "{color.status.warning}" },
-      "danger":         { "$value": "{color.status.danger}" },
-      "info":           { "$value": "{color.status.info}" }
+      "background": {
+        "$value": "{color.sand.25}"
+      },
+      "surface": {
+        "$value": "{color.sand.50}"
+      },
+      "surfaceRaised": {
+        "$value": "{color.white}"
+      },
+      "foreground": {
+        "$value": "{color.ink.900}"
+      },
+      "foregroundMuted": {
+        "$value": "{color.ink.500}"
+      },
+      "border": {
+        "$value": "{color.sand.100}"
+      },
+      "borderStrong": {
+        "$value": "{color.sand.200}"
+      },
+      "primary": {
+        "$value": "{color.ink.900}"
+      },
+      "primaryForeground": {
+        "$value": "{color.white}"
+      },
+      "focusRing": {
+        "$value": "{color.cobalt}"
+      },
+      "success": {
+        "$value": "{color.status.success}"
+      },
+      "warning": {
+        "$value": "{color.status.warning}"
+      },
+      "danger": {
+        "$value": "{color.status.danger}"
+      },
+      "info": {
+        "$value": "{color.status.info}"
+      }
     },
     "dark": {
       "$type": "color",
-      "background":     { "$value": "{color.navy.950}" },
-      "surface":        { "$value": "{color.navy.900}" },
-      "surfaceRaised":  { "$value": "{color.navy.800}" },
-      "foreground":     { "$value": "{color.navy.50}" },
-      "foregroundMuted":{ "$value": "{color.navy.300}" },
-      "border":         { "$value": "{color.navy.700}" },
-      "borderStrong":   { "$value": "{color.navy.600}" },
-      "primary":        { "$value": "{color.navy.50}" },
-      "primaryForeground": { "$value": "{color.navy.900}" },
-      "focusRing":      { "$value": "{color.navy.300}" },
-      "success":        { "$value": "#4ADE80" },
-      "warning":        { "$value": "#FBBF24" },
-      "danger":         { "$value": "#F87171" },
-      "info":           { "$value": "#93C5FD" }
+      "background": {
+        "$value": "{color.ink.950}"
+      },
+      "surface": {
+        "$value": "{color.ink.900}"
+      },
+      "surfaceRaised": {
+        "$value": "{color.ink.800}"
+      },
+      "foreground": {
+        "$value": "{color.sand.50}"
+      },
+      "foregroundMuted": {
+        "$value": "{color.ink.200}"
+      },
+      "border": {
+        "$value": "{color.ink.700}"
+      },
+      "borderStrong": {
+        "$value": "{color.ink.600}"
+      },
+      "primary": {
+        "$value": "{color.sand.50}"
+      },
+      "primaryForeground": {
+        "$value": "{color.ink.900}"
+      },
+      "focusRing": {
+        "$value": "{color.ink.300}"
+      },
+      "success": {
+        "$value": "#4ADE80"
+      },
+      "warning": {
+        "$value": "#FBBF24"
+      },
+      "danger": {
+        "$value": "#F87171"
+      },
+      "info": {
+        "$value": "#93C5FD"
+      }
     }
   }
 }

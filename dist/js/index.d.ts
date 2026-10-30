@@ -6,17 +6,18 @@ export interface Brand {
   name: string;
   nameAr: string;
   label: string;
+  labelAr: string;
   domain: string;
   light: BrandColors;
   dark: BrandColors;
 }
 export declare const tokens: {
   "color": {
-    "gold": string,
-    "emerald": string,
-    "burgundy": string,
-    "blue": string,
-    "navy": {
+    "copper": string,
+    "teal": string,
+    "plum": string,
+    "cobalt": string,
+    "ink": {
       "50": string,
       "100": string,
       "200": string,
@@ -28,6 +29,13 @@ export declare const tokens: {
       "800": string,
       "900": string,
       "950": string
+    },
+    "sand": {
+      "25": string,
+      "50": string,
+      "100": string,
+      "200": string,
+      "300": string
     },
     "white": string,
     "status": {
@@ -74,7 +82,6 @@ export declare const tokens: {
   "font": {
     "family": {
       "sans": [
-        string,
         string,
         string,
         string,

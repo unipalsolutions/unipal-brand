@@ -1,12 +1,21 @@
 // Builds preview/index.html: a single self-contained page that shows the identity
 // as the tokens define it, with a brand switcher and a light/dark toggle.
 import { contrast } from './lib.mjs';
+import { markPaths } from './logos.mjs';
 
 const esc = (s) => String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/"/g, '&quot;');
 const ratio = (a, b) => contrast(a, b).toFixed(1);
+const textOn = (hex) => (contrast(hex, '#FFFFFF') >= contrast(hex, '#091C2A') ? '#FFFFFF' : '#091C2A');
 
 export function previewHtml({ css, brands, color, text, font, logos }) {
   const brandList = Object.values(brands);
+  const ink = color.ink['900'];
+  const paper = color.sand['50'];
+
+  const scale = (name, entries) =>
+    `<div class="scale" dir="ltr" aria-label="${esc(name)}">${entries
+      .map(([k, hex]) => `<div class="step" style="background:${hex};color:${textOn(hex)}"><span>${k}</span><code>${hex}</code></div>`)
+      .join('')}</div>`;
 
   const swatch = (name, hex, note = '') => `
         <div class="swatch">
@@ -14,24 +23,22 @@ export function previewHtml({ css, brands, color, text, font, logos }) {
           <div class="swatch-meta"><strong>${esc(name)}</strong><code>${hex}</code>${note ? `<span>${esc(note)}</span>` : ''}</div>
         </div>`;
 
-  const navyScale = Object.entries(color.navy)
-    .map(([k, hex]) => `<div class="step" style="background:${hex};color:${Number(k) >= 500 ? '#fff' : color.navy['900']}"><span>${k}</span><code>${hex}</code></div>`)
-    .join('');
-
   const brandCards = brandList
     .map(
       (b) => `
       <article class="brand-card" data-brand="${b.id}">
-        <div class="logo-pair">
+        <div class="logo-grid">
           <div class="logo-light">${logos[b.id].light}</div>
           <div class="logo-dark">${logos[b.id].dark}</div>
+          <div class="logo-light">${logos[b.id].arLight}</div>
+          <div class="logo-dark">${logos[b.id].arDark}</div>
         </div>
         <h3>${esc(b.nameAr)}</h3>
         <p class="muted" dir="ltr">${esc(b.name)} · ${esc(b.domain)}</p>
         <div class="roles">
-          ${swatch('Accent', b.light.accent, `نص ${b.light.accentForeground === '#FFFFFF' ? 'أبيض' : 'كحلي'} عليه: ${ratio(b.light.accent, b.light.accentForeground)}:1`)}
-          ${swatch('Accent (dark)', b.dark.accent, `على الخلفية الداكنة: ${ratio(b.dark.accent, color.navy['950'])}:1`)}
-          ${swatch('Accent subtle', b.light.accentSubtle)}
+          ${swatch('Accent', b.light.accent, `نص ${b.light.accentForeground === '#FFFFFF' ? 'أبيض' : 'داكن'} عليه: ${ratio(b.light.accent, b.light.accentForeground)}:1`)}
+          ${swatch('Accent (dark)', b.dark.accent, `على الخلفية الداكنة: ${ratio(b.dark.accent, color.ink['950'])}:1`)}
+          ${swatch('Accent text', b.light.accentText, `على الخلفية الفاتحة: ${ratio(b.light.accentText, color.sand['25'])}:1`)}
         </div>
         <button class="btn btn-accent" type="button">احجز استشارة</button>
       </article>`,
@@ -43,8 +50,21 @@ export function previewHtml({ css, brands, color, text, font, logos }) {
       ([k, t]) => `
         <div class="type-row">
           <code>${k} · ${t.fontSize} / ${t.fontWeight}</code>
-          <div style="font-size:${t.fontSize};font-weight:${t.fontWeight};line-height:${t.lineHeight}">شريكك الموحّد للأعمال · Your unified business partner</div>
+          <div style="font-size:${t.fontSize};font-weight:${t.fontWeight};line-height:${t.lineHeight}">شريكك في كل خطوة · Your partner in every step</div>
         </div>`,
+    )
+    .join('');
+
+  const appIcons = brandList
+    .map(
+      (b) => `
+        <div class="app-icon" style="background:${paper}"><svg viewBox="0 0 64 64" aria-hidden="true">${markPaths({ ink, accent: b.light.accent })}</svg></div>`,
+    )
+    .join('');
+  const appIconsInverse = brandList
+    .map(
+      (b) => `
+        <div class="app-icon" style="background:${b.light.accent}"><svg viewBox="0 0 64 64" aria-hidden="true">${markPaths({ ink: paper, accent: ink })}</svg></div>`,
     )
     .join('');
 
@@ -56,7 +76,7 @@ export function previewHtml({ css, brands, color, text, font, logos }) {
 <title>UniPal Brand Preview</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Readex+Pro:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <style>
 ${css}
 * { box-sizing: border-box; }
@@ -74,9 +94,9 @@ code { font-family: var(--up-font-mono); font-size: 12px; color: var(--up-foregr
 .wrap { max-width: 1120px; margin: 0 auto; padding: 0 16px; }
 .muted { color: var(--up-foreground-muted); margin: 0; }
 h1, h2, h3 { margin: 0; line-height: var(--up-line-height-tight); }
-section { padding: var(--up-space-12) 0; border-top: 1px solid var(--up-border); }
+section { padding: var(--up-space-16) 0; border-top: 1px solid var(--up-border); }
 section > .wrap > h2 { font-size: var(--up-font-size-2xl); margin-bottom: var(--up-space-2); }
-section > .wrap > .muted { margin-bottom: var(--up-space-8); }
+section > .wrap > .muted { margin-bottom: var(--up-space-8); max-width: 70ch; }
 
 .toolbar { position: sticky; top: 0; z-index: 10; background: color-mix(in srgb, var(--up-background) 88%, transparent); backdrop-filter: blur(8px); border-bottom: 1px solid var(--up-border); }
 .toolbar .wrap { display: flex; flex-wrap: wrap; gap: var(--up-space-3); align-items: center; justify-content: space-between; padding-block: var(--up-space-3); }
@@ -84,33 +104,36 @@ section > .wrap > .muted { margin-bottom: var(--up-space-8); }
 .seg button { border: 0; background: transparent; color: var(--up-foreground-muted); font: inherit; font-size: 14px; padding: 6px 12px; border-radius: var(--up-radius-sm); cursor: pointer; }
 .seg button[aria-pressed="true"] { background: var(--up-surface-raised); color: var(--up-foreground); box-shadow: var(--up-shadow-sm); font-weight: 600; }
 
-.site-header { display: flex; align-items: center; justify-content: space-between; gap: var(--up-space-4); padding: var(--up-space-4) 0; flex-wrap: wrap; }
-.site-header svg { height: 44px; width: auto; display: block; }
+.site-header { display: flex; align-items: center; justify-content: space-between; gap: var(--up-space-4); padding: var(--up-space-5) 0; flex-wrap: wrap; }
+.site-header svg { height: 48px; width: auto; display: block; }
 .site-header nav { display: flex; gap: var(--up-space-6); flex-wrap: wrap; font-size: 15px; }
 .site-header nav a { color: var(--up-foreground); text-decoration: none; }
 .site-header nav a:hover { color: var(--up-accent-text); }
-.hero { padding: var(--up-space-16) 0 var(--up-space-20); }
-.hero .eyebrow { display: inline-block; font-size: 13px; font-weight: 600; color: var(--up-accent-text); background: var(--up-accent-subtle); padding: 4px 12px; border-radius: var(--up-radius-full); margin-bottom: var(--up-space-4); }
-.hero h1 { font-size: clamp(32px, 5vw, var(--up-font-size-4xl)); max-width: 16ch; }
-.hero p { font-size: var(--up-font-size-lg); color: var(--up-foreground-muted); max-width: 52ch; margin: var(--up-space-4) 0 var(--up-space-8); }
-.hero .actions { display: flex; gap: var(--up-space-3); flex-wrap: wrap; align-items: center; }
+.hero { position: relative; padding: var(--up-space-16) 0 var(--up-space-20); overflow: hidden; }
+.hero .art { position: absolute; left: -48px; bottom: -96px; width: 380px; height: 380px; pointer-events: none; }
+.hero .art .h1 { stroke: var(--up-border); }
+.hero .art .h2 { stroke: var(--up-accent); opacity: .22; }
+.hero .eyebrow { position: relative; display: inline-block; font-size: 13px; font-weight: 600; color: var(--up-accent-text); background: var(--up-accent-subtle); padding: 4px 12px; border-radius: var(--up-radius-full); margin-bottom: var(--up-space-4); }
+.hero h1 { position: relative; font-size: clamp(34px, 5.4vw, 52px); font-weight: 700; max-width: 13ch; }
+.hero p { position: relative; font-size: var(--up-font-size-lg); color: var(--up-foreground-muted); max-width: 48ch; margin: var(--up-space-4) 0 var(--up-space-8); }
+.hero .actions { position: relative; display: flex; gap: var(--up-space-3); flex-wrap: wrap; align-items: center; }
 .back-link { font-size: 14px; color: var(--up-foreground-muted); }
 
-.btn { font: inherit; font-weight: 600; font-size: 15px; border-radius: var(--up-radius-md); padding: 10px 20px; border: 1px solid transparent; cursor: pointer; transition: background var(--up-duration-fast) var(--up-easing-standard); }
+.btn { font: inherit; font-weight: 600; font-size: 15px; border-radius: var(--up-radius-md); padding: 11px 20px; border: 1px solid transparent; cursor: pointer; transition: background var(--up-duration-fast) var(--up-easing-standard); }
 .btn:focus-visible { outline: 2px solid var(--up-focus-ring); outline-offset: 2px; }
 .btn-accent { background: var(--up-accent); color: var(--up-accent-foreground); }
 .btn-accent:hover { background: var(--up-accent-strong); }
 .btn-primary { background: var(--up-primary); color: var(--up-primary-foreground); }
 .btn-outline { background: transparent; color: var(--up-foreground); border-color: var(--up-border-strong); }
 
-.grid { display: grid; gap: var(--up-space-6); grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); }
-.brand-card { background: var(--up-surface); border: 1px solid var(--up-border); border-radius: var(--up-radius-lg); padding: var(--up-space-6); display: flex; flex-direction: column; gap: var(--up-space-3); }
+.grid { display: grid; gap: var(--up-space-6); grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); }
+.brand-card { background: var(--up-surface); border: 1px solid var(--up-border); border-radius: var(--up-radius-xl); padding: var(--up-space-5); display: flex; flex-direction: column; gap: var(--up-space-3); }
 .brand-card h3 { font-size: var(--up-font-size-lg); }
-.logo-pair { display: grid; grid-template-columns: 1fr 1fr; gap: var(--up-space-2); }
-.logo-pair > div { border-radius: var(--up-radius-md); padding: var(--up-space-3); display: flex; align-items: center; justify-content: center; }
-.logo-pair svg { width: 100%; height: auto; max-height: 56px; }
-.logo-light { background: #FFFFFF; border: 1px solid var(--up-border); }
-.logo-dark { background: ${color.navy["900"]}; border: 1px solid var(--up-border); }
+.logo-grid { display: grid; grid-template-columns: 1fr 1fr; gap: var(--up-space-2); }
+.logo-grid > div { border-radius: var(--up-radius-md); padding: var(--up-space-3) var(--up-space-2); display: flex; align-items: center; justify-content: center; }
+.logo-grid svg { width: 100%; height: auto; max-height: 44px; }
+.logo-light { background: ${color.sand['25']}; border: 1px solid var(--up-border); }
+.logo-dark { background: ${ink}; border: 1px solid var(--up-border); }
 .roles { display: grid; gap: var(--up-space-2); }
 .brand-card .btn { align-self: flex-start; margin-top: auto; }
 
@@ -119,14 +142,19 @@ section > .wrap > .muted { margin-bottom: var(--up-space-8); }
 .swatch-meta { display: flex; flex-direction: column; font-size: 13px; line-height: 1.35; min-width: 0; }
 .swatch-meta span { color: var(--up-foreground-muted); font-size: 12px; }
 
-.scale { display: grid; grid-template-columns: repeat(auto-fit, minmax(84px, 1fr)); border-radius: var(--up-radius-lg); overflow: hidden; border: 1px solid var(--up-border); }
-.step { padding: var(--up-space-4) var(--up-space-3); min-height: 88px; display: flex; flex-direction: column; justify-content: flex-end; font-size: 13px; font-weight: 600; }
+.scale { display: grid; grid-template-columns: repeat(auto-fit, minmax(84px, 1fr)); border-radius: var(--up-radius-lg); overflow: hidden; border: 1px solid var(--up-border); margin-bottom: var(--up-space-4); }
+.step { padding: var(--up-space-4) var(--up-space-3); min-height: 92px; display: flex; flex-direction: column; justify-content: flex-end; font-size: 13px; font-weight: 600; }
 .step code { color: inherit; opacity: .8; font-size: 11px; }
 
+.mark-row { display: grid; gap: var(--up-space-4); grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); }
+.mark-tile { border-radius: var(--up-radius-xl); min-height: 240px; display: flex; align-items: center; justify-content: center; gap: var(--up-space-6); flex-wrap: wrap; padding: var(--up-space-6); position: relative; }
+.mark-tile .label { position: absolute; top: 12px; inset-inline-start: 16px; font-size: 12px; font-weight: 600; opacity: .7; }
+.mark-tile svg.xl { width: 140px; height: 140px; }
+.app-icons { display: flex; gap: var(--up-space-3); flex-wrap: wrap; justify-content: center; }
+.app-icon { width: 64px; height: 64px; border-radius: 16px; display: flex; align-items: center; justify-content: center; box-shadow: 0 6px 18px -8px rgba(9, 28, 42, .5); }
+.app-icon svg { width: 38px; height: 38px; }
+
 .type-row { display: grid; gap: var(--up-space-2); padding: var(--up-space-4) 0; border-bottom: 1px solid var(--up-border); }
-.fonts { display: grid; gap: var(--up-space-6); grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); margin-bottom: var(--up-space-8); }
-.font-card { background: var(--up-surface); border: 1px solid var(--up-border); border-radius: var(--up-radius-lg); padding: var(--up-space-6); }
-.font-card .big { font-size: 40px; font-weight: 700; line-height: 1.2; margin: var(--up-space-2) 0; }
 
 .components { display: grid; gap: var(--up-space-6); grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); }
 .panel { background: var(--up-surface-raised); border: 1px solid var(--up-border); border-radius: var(--up-radius-lg); padding: var(--up-space-6); box-shadow: var(--up-shadow-md); display: flex; flex-direction: column; gap: var(--up-space-4); }
@@ -140,6 +168,13 @@ input { font: inherit; padding: 10px 12px; border-radius: var(--up-radius-md); b
 input:focus { outline: 2px solid var(--up-focus-ring); outline-offset: 1px; }
 .task { display: flex; justify-content: space-between; gap: var(--up-space-3); padding: var(--up-space-3) 0; border-bottom: 1px solid var(--up-border); font-size: 14px; }
 .task:last-child { border-bottom: 0; }
+
+.cards { display: flex; gap: var(--up-space-5); flex-wrap: wrap; justify-content: center; }
+.bcard { width: 300px; max-width: 100%; aspect-ratio: 1.75; border-radius: var(--up-radius-lg); padding: var(--up-space-5); display: flex; flex-direction: column; justify-content: space-between; box-shadow: var(--up-shadow-lg); }
+.bcard svg { height: 40px; width: auto; align-self: flex-start; }
+.bcard .person { font-size: 14px; font-weight: 700; }
+.bcard .role { font-size: 11px; opacity: .75; }
+.bcard .contact { font-size: 10.5px; direction: ltr; text-align: left; opacity: .85; }
 footer { padding: var(--up-space-8) 0; color: var(--up-foreground-muted); font-size: 13px; border-top: 1px solid var(--up-border); }
 </style>
 </head>
@@ -159,13 +194,14 @@ ${brandList.map((b) => `      <button type="button" data-set-brand="${b.id}" ari
 
 <header class="wrap">
   <div class="site-header">
-    <div id="header-logo" aria-live="polite">${logos.group.light}</div>
-    <nav aria-label="القائمة"><a href="#brands">الرئيسية</a><a href="#colors">خدماتنا</a><a href="#type">من نحن</a><a href="#components">تواصل معنا</a></nav>
+    <div id="header-logo">${logos.group.arLight}</div>
+    <nav aria-label="القائمة"><a href="#brands">الرئيسية</a><a href="#mark">خدماتنا</a><a href="#type">من نحن</a><a href="#components">تواصل معنا</a></nav>
   </div>
   <div class="hero">
+    <svg class="art" viewBox="0 0 64 64" aria-hidden="true"><path class="h1" d="M17 8V33A15 15 0 0 0 32 48" fill="none" stroke-width="12"/><path class="h2" d="M32 48A15 15 0 0 0 47 33V8" fill="none" stroke-width="12"/></svg>
     <span class="eyebrow" id="hero-eyebrow">${esc(brands.group.nameAr)}</span>
-    <h1>شريكك الموحّد للأعمال</h1>
-    <p>استشارات، ضرائب، وحلول تقنية تحت مظلة واحدة. هذه الصفحة تعرض الهوية كما تعرّفها ملفات الـ tokens، وتتغير كلها من مكان واحد.</p>
+    <h1>شريكك في كل خطوة</h1>
+    <p>استشارات، ضرائب، وحلول تقنية تحت مظلة واحدة، بفريق يعرف عملك كما تعرفه أنت.</p>
     <div class="actions">
       <button class="btn btn-accent" type="button">احجز استشارة</button>
       <button class="btn btn-outline" type="button">تعرّف علينا</button>
@@ -174,10 +210,22 @@ ${brandList.map((b) => `      <button type="button" data-set-brand="${b.id}" ari
   </div>
 </header>
 
+<section id="mark">
+  <div class="wrap">
+    <h2>الرمز: شراكة</h2>
+    <p class="muted">حرف U من نصفين يلتقيان في الأسفل. النصف الأيسر هو UniPal وثابت دائماً، والنصف الأيمن هو الشريك ويأخذ لون الشركة. معاً يصنعان حرفاً واحداً.</p>
+    <div class="mark-row">
+      <div class="mark-tile" style="background:${paper};color:${ink}"><span class="label">على الفاتح</span><svg class="xl" viewBox="0 0 64 64" aria-hidden="true">${markPaths({ ink, accent: brands.group.light.accent })}</svg></div>
+      <div class="mark-tile" style="background:${ink};color:${paper}"><span class="label">على الداكن</span><svg class="xl" viewBox="0 0 64 64" aria-hidden="true">${markPaths({ ink: paper, accent: brands.group.dark.accent })}</svg></div>
+      <div class="mark-tile" style="background:${ink};color:${paper};flex-direction:column"><span class="label">أيقونات التطبيقات</span><div class="app-icons">${appIcons}</div><div class="app-icons">${appIconsInverse}</div></div>
+    </div>
+  </div>
+</section>
+
 <section id="brands">
   <div class="wrap">
-    <h2>العلامات الأربع</h2>
-    <p class="muted">حرف U ثابت بالكحلي (أو الأبيض على الداكن)، والنقطة وحدها تحمل لون الشركة. لون النص فوق كل لون يُختار تلقائياً حسب التباين.</p>
+    <h2>الشركات الأربع</h2>
+    <p class="muted">كل شركة لها شعار لاتيني وعربي، فاتح وداكن. لون النص فوق كل لون يُختار تلقائياً حسب التباين.</p>
     <div class="grid">${brandCards}
     </div>
   </div>
@@ -185,20 +233,18 @@ ${brandList.map((b) => `      <button type="button" data-set-brand="${b.id}" ari
 
 <section id="colors">
   <div class="wrap">
-    <h2>الكحلي</h2>
-    <p class="muted">اللون الأساسي لكل العلامات. 900 هو كحلي يونيبال، و50 هو الرمادي الفاتح للخلفيات.</p>
-    <div class="scale" dir="ltr">${navyScale}</div>
+    <h2>الألوان</h2>
+    <p class="muted">البترولي للنصوص والنصف الثابت من الرمز، والرملي للخلفيات، ولون واحد لكل شركة.</p>
+    ${scale('Ink', Object.entries(color.ink))}
+    ${scale('Sand', Object.entries(color.sand))}
+    ${scale('Accents', brandList.map((b) => [b.label.charAt(0) + b.label.slice(1).toLowerCase(), b.light.accent]))}
   </div>
 </section>
 
 <section id="type">
   <div class="wrap">
-    <h2>الخطوط</h2>
-    <p class="muted">Inter أولاً للنص اللاتيني والأرقام، وما لا يوجد فيه من حروف عربية يأخذه IBM Plex Sans Arabic تلقائياً.</p>
-    <div class="fonts">
-      <div class="font-card"><code>${esc(font.family.arabic[0])}</code><div class="big" style="font-family:var(--up-font-arabic)">يونيبال للحلول</div><p class="muted">عادي، متوسط، عريض · رخصة OFL</p></div>
-      <div class="font-card" dir="ltr"><code>${esc(font.family.latin[0])}</code><div class="big" style="font-family:var(--up-font-latin)">UniPal Solutions</div><p class="muted">Regular, SemiBold, ExtraBold · OFL</p></div>
-    </div>
+    <h2>الخط: ${esc(font.family.sans[0])}</h2>
+    <p class="muted">خط واحد يغطي العربية واللاتينية بنفس الروح، فيبقى النص المختلط متناسقاً. مجاني برخصة OFL.</p>
     ${typeRows}
   </div>
 </section>
@@ -225,18 +271,35 @@ ${brandList.map((b) => `      <button type="button" data-set-brand="${b.id}" ari
   </div>
 </section>
 
+<section id="cards">
+  <div class="wrap">
+    <h2>بطاقات العمل</h2>
+    <p class="muted">وجه لاتيني داكن ووجه عربي فاتح.</p>
+    <div class="cards">
+      <div class="bcard" style="background:${ink};color:${paper}">
+        ${logos.group.dark}
+        <div style="direction:ltr;text-align:left"><div class="person">Full Name</div><div class="role">Managing Partner</div></div>
+      </div>
+      <div class="bcard" style="background:${color.sand['25']};color:${ink};border:1px solid ${color.sand['100']}">
+        ${logos.advisors.arLight}
+        <div><div class="person">الاسم الكامل</div><div class="role">مستشار أول</div><div class="contact">name@unipal.group · advisors.unipal.group</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
 <footer><div class="wrap">UniPal Brand · مولّد من unipal-brand/tokens · غيّر الـ tokens وأعد البناء لتتغير الهوية في كل المنتجات.</div></footer>
 
 <script>
 (() => {
   const root = document.documentElement;
-  const logos = ${JSON.stringify(Object.fromEntries(Object.entries(logos).map(([id, l]) => [id, l.light])))};
-  const reversed = ${JSON.stringify(Object.fromEntries(Object.entries(logos).map(([id, l]) => [id, l.dark])))};
+  const light = ${JSON.stringify(Object.fromEntries(Object.entries(logos).map(([id, l]) => [id, l.arLight])))};
+  const dark = ${JSON.stringify(Object.fromEntries(Object.entries(logos).map(([id, l]) => [id, l.arDark])))};
   const names = ${JSON.stringify(Object.fromEntries(brandList.map((b) => [b.id, b.nameAr])))};
   const isDark = () => root.dataset.theme === 'dark' || (root.dataset.theme !== 'light' && matchMedia('(prefers-color-scheme: dark)').matches);
   const paint = () => {
     const id = root.dataset.brand;
-    document.getElementById('header-logo').innerHTML = (isDark() ? reversed : logos)[id];
+    document.getElementById('header-logo').innerHTML = (isDark() ? dark : light)[id];
     document.getElementById('hero-eyebrow').textContent = names[id];
   };
   const press = (attr, value) => document.querySelectorAll('[' + attr + ']').forEach((b) => b.setAttribute('aria-pressed', String(b.getAttribute(attr) === value)));

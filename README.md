@@ -14,20 +14,20 @@ The shared UniPal Group identity: design tokens, logos, and generated outputs fo
 | `dist/css/theme.css` | Tailwind CSS v4 `@theme` mapping (`bg-background`, `text-foreground`, `bg-accent`, `font-sans`, ...) |
 | `dist/js/` | ESM + TypeScript: `tokens`, `brands`, `brandForHost(host)` |
 | `flutter/` | Dart package `unipal_brand`: generated tokens + `UnipalTheme.light/dark(brand)` |
-| `logos/` | Symbol and lockup SVGs per brand, normal and reversed |
+| `logos/` | Symbol, Latin lockup and Arabic lockup SVGs per brand, normal and reversed |
 | `preview/index.html` | Self-contained preview of the whole identity with brand and theme switchers |
 
 ## Brands
 
 | Brand | Domain | Accent |
 | --- | --- | --- |
-| UniPal Group | unipal.group | `#C8A24A` gold |
-| UniPal Advisors | advisors.unipal.group | `#0E7C66` emerald |
-| UniPal Tax | tax.unipal.group | `#9B2C3E` burgundy |
-| UniPal Solutions | solutions.unipal.group | `#2563EB` blue |
+| UniPal Group | unipal.group | `#B8733A` copper |
+| UniPal Advisors | advisors.unipal.group | `#1C8272` teal |
+| UniPal Tax | tax.unipal.group | `#8A2F5E` plum |
+| UniPal Solutions | solutions.unipal.group | `#2F5BEA` cobalt |
 
-All brands share navy `#0E1A3A`, IBM Plex Sans Arabic + Inter, and the same scales. Values come from the
-UniPal Group brand proposal v1.0 (October 2026) and are expected to change; change them in `tokens/` only.
+All brands share petrol ink `#0F2A3D`, sand `#F5EFE6`, the Readex Pro typeface (Arabic and Latin) and the
+same scales. This is the "Partnership" direction chosen on 2026-10-30; change values in `tokens/` only.
 
 ## Use in Next.js (`unipal-web`)
 
@@ -49,7 +49,7 @@ const brand = brandForHost((await headers()).get('host'));
 return <html lang="ar" dir="rtl" data-brand={brand.id}>...</html>;
 ```
 
-Load the fonts with `next/font/google` (`Inter`, `IBM_Plex_Sans_Arabic`) and keep Inter first in the stack.
+Load the font with `next/font/google` (`Readex_Pro`, subsets `arabic` and `latin`).
 
 ## Use in Flutter (`unipal-apps`)
 
@@ -69,13 +69,14 @@ MaterialApp(
 );
 ```
 
-Bundle the Inter and IBM Plex Sans Arabic font files in the app (both OFL) under those family names.
+Bundle the Readex Pro font files in the app (OFL) under the family name `Readex Pro`.
 
 ## Logos
 
-The mark is a U (unity, the umbrella over the companies) holding a dot (the client). The letter is always
-navy, or white on dark backgrounds; only the dot changes color. These SVGs are generated working versions:
-the lockup text is live Inter text, so the final print-ready files should be outlined by the designer.
+The mark ("Partnership") is a U made of two halves that meet at the bottom: the left half is UniPal and is
+always ink (sand on dark backgrounds), the right half is the partner and takes the company color. Together
+they make one letter. These SVGs are generated working versions: lockup text is live Readex Pro, so the
+final print-ready files should have it outlined.
 
 ## Development
 

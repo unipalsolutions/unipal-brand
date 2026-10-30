@@ -46,7 +46,7 @@ abstract final class UnipalTheme {
       tertiary: a.accentStrong,
       onTertiary: a.accentForeground,
       error: s.danger,
-      onError: isDark ? UnipalPalette.navy900 : UnipalPalette.white,
+      onError: isDark ? UnipalPalette.ink900 : UnipalPalette.white,
       surface: s.background,
       onSurface: s.foreground,
       onSurfaceVariant: s.foregroundMuted,
